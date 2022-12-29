@@ -5,6 +5,7 @@ import blockchains.iaas.uni.stuttgart.de.api.interfaces.BlockchainAdapter;
 import blockchains.iaas.uni.stuttgart.de.api.model.*;
 import blockchains.iaas.uni.stuttgart.de.api.utils.SmartContractPathParser;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import io.reactivex.Observable;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpHeaders;
@@ -79,7 +80,11 @@ public class GenericAdapter implements BlockchainAdapter {
                                                               long timeout,
                                                               List<String> signers,
                                                               long minimumNumberOfSignatures) throws BalException {
+        ObjectMapper mapper = new ObjectMapper();
+        ObjectNode rootNode = mapper.createObjectNode();
+        // rootNode.put("")
         return null;
+
         // tx.complete();
     }
 
