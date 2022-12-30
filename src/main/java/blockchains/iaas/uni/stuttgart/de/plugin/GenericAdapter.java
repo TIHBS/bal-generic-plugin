@@ -3,18 +3,8 @@ package blockchains.iaas.uni.stuttgart.de.plugin;
 import blockchains.iaas.uni.stuttgart.de.api.exceptions.*;
 import blockchains.iaas.uni.stuttgart.de.api.interfaces.BlockchainAdapter;
 import blockchains.iaas.uni.stuttgart.de.api.model.*;
-import blockchains.iaas.uni.stuttgart.de.api.utils.SmartContractPathParser;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ObjectNode;
 import io.reactivex.Observable;
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpHeaders;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
-import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,30 +12,31 @@ import javax.naming.OperationNotSupportedException;
 import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionException;
-import java.util.concurrent.TimeUnit;
 
 public class GenericAdapter implements BlockchainAdapter {
 
-    private String nodeUrl;
+    private String serverUrl = "http://localhost:8585";
 
     private static final Logger logger = LoggerFactory.getLogger(GenericAdapter.class.getName());
 
 
-    public GenericAdapter(String nodeUrl, String keyFile) {
-        this.nodeUrl = nodeUrl;
+    public GenericAdapter(String keyFile) {
+        if (keyFile != null) {
+            ObjectMapper objectMapper = new ObjectMapper();
+            try {
+                Map<String, String> example = objectMapper.readValue(new File(keyFile), Map.class);
 
-        ObjectMapper objectMapper = new ObjectMapper();
-        try {
-            Map<String, String> example = objectMapper.readValue(new File(keyFile), Map.class);
-
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
+
 
     }
 
@@ -80,15 +71,44 @@ public class GenericAdapter implements BlockchainAdapter {
                                                               long timeout,
                                                               List<String> signers,
                                                               long minimumNumberOfSignatures) throws BalException {
-        ObjectMapper mapper = new ObjectMapper();
-        ObjectNode rootNode = mapper.createObjectNode();
-        // rootNode.put("")
-        return null;
+        return CompletableFuture.supplyAsync(() -> {
+            try {
+                Map<String, Object> m = new HashMap<>();
+                m.put("functionIdentifier", functionIdentifier);
+                m.put("smartContractPath", smartContractPath);
 
-        // tx.complete();
+                m.put("inputs", inputs);
+                m.put("typeArguments", typeArguments);
+                m.put("outputs", outputs);
+                m.put("requiredConfidence", requiredConfidence);
+                m.put("timeout", timeout);
+                m.put("signers", signers);
+                m.put("minimumNumberOfSignatures", minimumNumberOfSignatures);
+
+                String json = new ObjectMapper().writeValueAsString(m);
+                String api = this.serverUrl + "/execute";
+                String result = Utils.sendPostRequest(api, json);
+
+                ObjectMapper mapper = new ObjectMapper();
+                Map<String,Object> map = mapper.readValue(result, Map.class);
+
+                logger.info("Transaction hash: " + map.get("transactionHash"));
+                return CompletableFuture.completedFuture(map.get("transactionHash"));
+            } catch (Exception e) {
+                throw new CompletionException(wrapExceptions(e));
+            }
+        }).thenApply((txhash) -> {
+            Transaction tx = new Transaction();
+            tx.setState(TransactionState.CONFIRMED);
+            tx.setReturnValues(new ArrayList<>());
+            return tx;
+        }).exceptionally(e -> {
+            logger.info("Invocation failed with exception : " + e.getMessage());
+            throw wrapExceptions(e);
+        });
     }
 
-    private static CompletionException wrapAtposExceptions(Throwable e) {
+    private static CompletionException wrapExceptions(Throwable e) {
         return new CompletionException(mapException(e));
     }
 

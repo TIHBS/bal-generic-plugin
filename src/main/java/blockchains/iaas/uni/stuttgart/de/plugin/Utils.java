@@ -53,7 +53,7 @@ public class Utils {
         return null;
     }
 
-    private String sendPostRequest(String url, String json) throws Exception {
+    public static String sendPostRequest(String url, String json) throws Exception {
         String result = "";
         HttpPost post = new HttpPost(url);
         post.addHeader("content-type", "application/json");
@@ -66,7 +66,7 @@ public class Utils {
             CloseableHttpResponse response = httpClient.execute(post);
             logger.debug("POST API [{}] response code [{}]", url, response.getStatusLine().getStatusCode());
             result = EntityUtils.toString(response.getEntity());
-            if (response.getStatusLine().getStatusCode() != 202) {
+            if (response.getStatusLine().getStatusCode() != 200) {
                 throw new Exception(result);
             }
             return result;

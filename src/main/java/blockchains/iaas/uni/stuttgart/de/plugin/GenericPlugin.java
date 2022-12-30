@@ -29,11 +29,10 @@ public class GenericPlugin extends Plugin {
         public BlockchainAdapter getAdapter(AbstractConnectionProfile abstractConnectionProfile) {
             GenericConnectionProfile genericConnectionProfile = (GenericConnectionProfile) abstractConnectionProfile;
 
-            String nodeUrl = genericConnectionProfile.getNodeUrl();
             String keyFile = genericConnectionProfile.getKeyFile();
 
             // int averageBlockTimeSeconds = Integer.parseInt(parameters.get("averageBlockTimeSeconds"));
-            return new GenericAdapter(nodeUrl, keyFile);
+            return new GenericAdapter(keyFile);
         }
 
 
