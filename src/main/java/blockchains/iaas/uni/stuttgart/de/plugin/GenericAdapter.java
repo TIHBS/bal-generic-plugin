@@ -3,7 +3,10 @@ package blockchains.iaas.uni.stuttgart.de.plugin;
 import blockchains.iaas.uni.stuttgart.de.api.exceptions.*;
 import blockchains.iaas.uni.stuttgart.de.api.interfaces.BlockchainAdapter;
 import blockchains.iaas.uni.stuttgart.de.api.model.*;
+import blockchains.iaas.uni.stuttgart.de.api.utils.SmartContractPathParser;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.type.TypeFactory;
 import io.reactivex.Observable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -90,7 +93,7 @@ public class GenericAdapter implements BlockchainAdapter {
                 String result = Utils.sendPostRequest(api, json);
 
                 ObjectMapper mapper = new ObjectMapper();
-                Map<String,Object> map = mapper.readValue(result, Map.class);
+                Map<String, Object> map = mapper.readValue(result, Map.class);
 
                 logger.info("Transaction hash: " + map.get("transactionHash"));
                 return CompletableFuture.completedFuture(map.get("transactionHash"));
@@ -123,7 +126,33 @@ public class GenericAdapter implements BlockchainAdapter {
     public CompletableFuture<QueryResult> queryEvents(String smartContractAddress, String eventIdentifier,
                                                       List<Parameter> outputParameters, String filter, TimeFrame timeFrame) throws BalException {
 
-        return null;
+
+        try {
+            String json = null;
+            Map<String, Object> m = new HashMap<>();
+            m.put("eventIdentifier", eventIdentifier);
+            m.put("smartContractPath", smartContractAddress);
+
+            m.put("outputParameters", outputParameters);
+            m.put("filter", filter);
+            m.put("timeFrame", timeFrame);
+
+            json = new ObjectMapper().writeValueAsString(m);
+
+            String api = this.serverUrl + "/query";
+            String result = Utils.sendPostRequest(api, json);
+
+            ObjectMapper objectMapper = new ObjectMapper();
+            TypeFactory typeFactory = objectMapper.getTypeFactory();
+            List<Occurrence> occurrences = objectMapper.readValue(result, typeFactory.constructCollectionType(List.class, Occurrence.class));
+            QueryResult queryResult = new QueryResult();
+            queryResult.setOccurrences(occurrences);
+            return CompletableFuture.completedFuture(queryResult);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override

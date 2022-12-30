@@ -1,6 +1,4 @@
-import blockchains.iaas.uni.stuttgart.de.api.model.Parameter;
-import blockchains.iaas.uni.stuttgart.de.api.model.Transaction;
-import blockchains.iaas.uni.stuttgart.de.api.model.TransactionState;
+import blockchains.iaas.uni.stuttgart.de.api.model.*;
 import blockchains.iaas.uni.stuttgart.de.plugin.GenericAdapter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -42,6 +40,26 @@ public class TestGenericAdapter {
 
         assert result.getState() == TransactionState.CONFIRMED;
         assert result != null;
+
+    }
+
+    @Test
+    public void testQueryEvents() throws ExecutionException, InterruptedException {
+        String smartContractPath = "0x2/devnet_nft";
+        String eventIdentifier = "0x2::devnet_nft::MintNFTEvent";
+        TimeFrame timeFrame = new TimeFrame("0", "1672411415694000");
+        String filter = "";
+        List<Parameter> outputs = new ArrayList<>();
+
+        double requiredConfidence = 0;
+        long timeout = 10000000;
+        List<String> signers = new ArrayList<>();
+        long minimumNumberOfSignatures = 0;
+        QueryResult result = adapter.queryEvents(smartContractPath, eventIdentifier, outputs,
+                filter, timeFrame).get();
+
+        assert result != null;
+        assert result.getOccurrences().size() != 0;
 
     }
 }
