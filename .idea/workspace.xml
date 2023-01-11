@@ -6,10 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="a8b4e315-3565-463b-b4d0-f4e3650c17ab" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/blockchains/iaas/uni/stuttgart/de/plugin/GenericAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/blockchains/iaas/uni/stuttgart/de/plugin/GenericAdapter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/blockchains/iaas/uni/stuttgart/de/plugin/GenericConnectionProfile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/blockchains/iaas/uni/stuttgart/de/plugin/GenericConnectionProfile.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/blockchains/iaas/uni/stuttgart/de/plugin/GenericPlugin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/blockchains/iaas/uni/stuttgart/de/plugin/GenericPlugin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/TestGenericAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/TestGenericAdapter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -163,7 +161,7 @@
       <option name="presentableId" value="Default" />
       <updated>1672353856818</updated>
       <workItem from="1672353857962" duration="7274000" />
-      <workItem from="1673458084477" duration="10437000" />
+      <workItem from="1673458084477" duration="11332000" />
     </task>
     <servers />
   </component>

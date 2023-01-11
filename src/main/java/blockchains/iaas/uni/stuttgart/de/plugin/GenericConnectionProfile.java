@@ -8,30 +8,8 @@ public class GenericConnectionProfile extends AbstractConnectionProfile {
     public GenericConnectionProfile() {
     }
 
-    private String nodeUrl;
     private String remotePluginUrl;
-    private String keyFile;
-
-    public GenericConnectionProfile(String nodeUrl) {
-        this.nodeUrl = nodeUrl;
-    }
-
-    public String getNodeUrl() {
-        return nodeUrl;
-    }
-
-    public void setNodeUrl(String nodeUrl) {
-        this.nodeUrl = nodeUrl;
-    }
-
-    public String getKeyFile() {
-        return keyFile;
-    }
-
-    public void setKeyFile(String keyFile) {
-        this.keyFile = keyFile;
-    }
-
+    
     public String getRemotePluginUrl() {
         return remotePluginUrl;
     }
