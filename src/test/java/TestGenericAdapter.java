@@ -1,7 +1,10 @@
 import blockchains.iaas.uni.stuttgart.de.api.model.*;
 import blockchains.iaas.uni.stuttgart.de.plugin.GenericAdapter;
+import io.reactivex.Observable;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.swing.tree.TreeNode;
 import java.util.ArrayList;
@@ -10,6 +13,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
 public class TestGenericAdapter {
+    private static final Logger logger = LoggerFactory.getLogger(TestGenericAdapter.class.getName());
 
     private GenericAdapter adapter;
 
@@ -64,5 +68,23 @@ public class TestGenericAdapter {
         assert result != null;
         assert result.getOccurrences().size() != 0;
 
+    }
+
+    @Test
+    public void testSubscribe() throws ExecutionException, InterruptedException {
+        String smartContractPath = "0x2/devnet_nft";
+        String eventIdentifier = "0x2::devnet_nft::MintNFTEvent";
+        String filter = "";
+        List<Parameter> outputs = new ArrayList<>();
+
+        double requiredConfidence = 0;
+        adapter.subscribeToEvent(smartContractPath, eventIdentifier, outputs, requiredConfidence, filter)
+                .blockingSubscribe(occurrence -> {
+                    if (occurrence != null) {
+                        logger.info("detected occurrence!");
+                    } else {
+                        logger.error("detected occurrence is null!");
+                    }
+                });
     }
 }

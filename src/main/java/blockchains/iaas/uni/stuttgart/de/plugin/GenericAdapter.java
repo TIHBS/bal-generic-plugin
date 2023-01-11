@@ -5,6 +5,7 @@ import blockchains.iaas.uni.stuttgart.de.api.interfaces.BlockchainAdapter;
 import blockchains.iaas.uni.stuttgart.de.api.model.*;
 import blockchains.iaas.uni.stuttgart.de.api.utils.SmartContractPathParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 import io.reactivex.Observable;
@@ -15,16 +16,15 @@ import javax.naming.OperationNotSupportedException;
 import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionException;
+import java.util.concurrent.TimeUnit;
 
 public class GenericAdapter implements BlockchainAdapter {
 
     private String serverUrl = "http://localhost:8585";
+    private HashMap<String, String> eventSubscriptionLastSearchTimeMapping = new HashMap();
 
     private static final Logger logger = LoggerFactory.getLogger(GenericAdapter.class.getName());
 
@@ -120,7 +120,39 @@ public class GenericAdapter implements BlockchainAdapter {
     @Override
     public Observable<Occurrence> subscribeToEvent(String smartContractAddress, String eventIdentifier,
                                                    List<Parameter> outputParameters, double degreeOfConfidence, String filter) throws BalException {
-        return null;
+
+        return Observable.interval(0, 10, TimeUnit.SECONDS).map((t) -> {
+            String key = smartContractAddress + "::" + eventIdentifier;
+            String end = String.valueOf(System.currentTimeMillis());
+
+            String start = eventSubscriptionLastSearchTimeMapping.getOrDefault(key, end);
+
+            Map<String, Object> m = new HashMap<>();
+            m.put("eventIdentifier", eventIdentifier);
+            m.put("filter", filter);
+
+            Map<String, String> timeFrame = new HashMap<>();
+            timeFrame.put("from", start);
+            timeFrame.put("to", end);
+            m.put("timeframe", timeFrame);
+            m.put("parameters", outputParameters);
+
+            String json = new ObjectMapper().writeValueAsString(m);
+
+
+            String api = this.serverUrl + "/query";
+            String result = Utils.sendPostRequest(api, json);
+
+            ObjectMapper mapper = new ObjectMapper();
+
+            eventSubscriptionLastSearchTimeMapping.replace(key, end);
+
+            Occurrence[] occurrencesArray = mapper.readValue(result, Occurrence[].class);
+            List<Occurrence> occurrences = Arrays.asList(occurrencesArray);
+            logger.info("Subscribe query result size {} time frame [{},{}]", occurrences.size(), start, end);
+
+            return occurrences;
+        }).flatMapIterable(x -> x);
 
     }
 

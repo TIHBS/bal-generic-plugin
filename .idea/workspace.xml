@@ -6,8 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="a8b4e315-3565-463b-b4d0-f4e3650c17ab" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/blockchains/iaas/uni/stuttgart/de/plugin/GenericAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/blockchains/iaas/uni/stuttgart/de/plugin/GenericAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/TestGenericAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/TestGenericAdapter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +54,7 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="Maven.bal-generic-plugin [clean,compile...]">
+  <component name="RunManager" selected="JUnit.TestGenericAdapter.testSubscribe">
     <configuration name="TestGenericAdapter" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="bal-generic-plugin" />
       <option name="PACKAGE_NAME" value="" />
@@ -79,6 +79,16 @@
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="TestGenericAdapter" />
       <option name="METHOD_NAME" value="testQueryEvents" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestGenericAdapter.testSubscribe" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="bal-generic-plugin" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="TestGenericAdapter" />
+      <option name="METHOD_NAME" value="testSubscribe" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -127,6 +137,7 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="JUnit.TestGenericAdapter.testSubscribe" />
       <item itemvalue="JUnit.TestGenericAdapter.testExecute" />
       <item itemvalue="JUnit.TestGenericAdapter" />
       <item itemvalue="JUnit.TestGenericAdapter.testQueryEvents" />
@@ -134,6 +145,7 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.TestGenericAdapter.testSubscribe" />
         <item itemvalue="JUnit.TestGenericAdapter.testExecute" />
         <item itemvalue="JUnit.TestGenericAdapter.testQueryEvents" />
         <item itemvalue="JUnit.TestGenericAdapter" />
@@ -149,7 +161,7 @@
       <option name="presentableId" value="Default" />
       <updated>1672353856818</updated>
       <workItem from="1672353857962" duration="7274000" />
-      <workItem from="1673458084477" duration="3523000" />
+      <workItem from="1673458084477" duration="8014000" />
     </task>
     <servers />
   </component>
@@ -174,11 +186,6 @@
           <url>file://$PROJECT_DIR$/src/main/java/blockchains/iaas/uni/stuttgart/de/plugin/Utils.java</url>
           <line>70</line>
           <option name="timeStamp" value="10" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/blockchains/iaas/uni/stuttgart/de/plugin/GenericAdapter.java</url>
-          <line>151</line>
-          <option name="timeStamp" value="11" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
