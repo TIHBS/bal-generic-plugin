@@ -32,7 +32,7 @@ public class GenericPlugin extends Plugin {
             String keyFile = genericConnectionProfile.getKeyFile();
 
             // int averageBlockTimeSeconds = Integer.parseInt(parameters.get("averageBlockTimeSeconds"));
-            return new GenericAdapter(keyFile);
+            return new GenericAdapter(genericConnectionProfile.getRemotePluginUrl());
         }
 
 

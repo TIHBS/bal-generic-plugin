@@ -7,6 +7,8 @@
     <list default="true" id="a8b4e315-3565-463b-b4d0-f4e3650c17ab" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/blockchains/iaas/uni/stuttgart/de/plugin/GenericAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/blockchains/iaas/uni/stuttgart/de/plugin/GenericAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/blockchains/iaas/uni/stuttgart/de/plugin/GenericConnectionProfile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/blockchains/iaas/uni/stuttgart/de/plugin/GenericConnectionProfile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/blockchains/iaas/uni/stuttgart/de/plugin/GenericPlugin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/blockchains/iaas/uni/stuttgart/de/plugin/GenericPlugin.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/TestGenericAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/TestGenericAdapter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -54,7 +56,7 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="JUnit.TestGenericAdapter.testSubscribe">
+  <component name="RunManager" selected="Maven.bal-generic-plugin [clean,compile...]">
     <configuration name="TestGenericAdapter" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="bal-generic-plugin" />
       <option name="PACKAGE_NAME" value="" />
@@ -161,7 +163,7 @@
       <option name="presentableId" value="Default" />
       <updated>1672353856818</updated>
       <workItem from="1672353857962" duration="7274000" />
-      <workItem from="1673458084477" duration="9256000" />
+      <workItem from="1673458084477" duration="10437000" />
     </task>
     <servers />
   </component>

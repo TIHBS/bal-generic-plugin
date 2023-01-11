@@ -19,7 +19,7 @@ public class TestGenericAdapter {
 
     @BeforeEach
     public void setUp() {
-        adapter = new GenericAdapter(null);
+        adapter = new GenericAdapter("http://localhost:8585");
     }
 
     @Test

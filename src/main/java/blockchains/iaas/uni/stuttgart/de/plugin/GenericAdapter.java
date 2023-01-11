@@ -23,24 +23,27 @@ import java.util.concurrent.TimeUnit;
 
 public class GenericAdapter implements BlockchainAdapter {
 
-    private String serverUrl = "http://localhost:8585";
     private HashMap<String, String> eventSubscriptionLastSearchTimeMapping = new HashMap();
 
     private static final Logger logger = LoggerFactory.getLogger(GenericAdapter.class.getName());
+    private static String serverUrl = null;
 
+//    public GenericAdapter(String keyFile) {
+//        if (keyFile != null) {
+//            ObjectMapper objectMapper = new ObjectMapper();
+//            try {
+//                Map<String, String> example = objectMapper.readValue(new File(keyFile), Map.class);
+//
+//            } catch (IOException e) {
+//                throw new RuntimeException(e);
+//            }
+//        }
+//
+//    }
 
-    public GenericAdapter(String keyFile) {
-        if (keyFile != null) {
-            ObjectMapper objectMapper = new ObjectMapper();
-            try {
-                Map<String, String> example = objectMapper.readValue(new File(keyFile), Map.class);
+    public GenericAdapter(String remotePluginUrl) {
 
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }
-
-
+        serverUrl = remotePluginUrl;
     }
 
 

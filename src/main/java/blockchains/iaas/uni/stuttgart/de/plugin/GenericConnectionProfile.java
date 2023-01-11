@@ -9,6 +9,7 @@ public class GenericConnectionProfile extends AbstractConnectionProfile {
     }
 
     private String nodeUrl;
+    private String remotePluginUrl;
     private String keyFile;
 
     public GenericConnectionProfile(String nodeUrl) {
@@ -29,5 +30,13 @@ public class GenericConnectionProfile extends AbstractConnectionProfile {
 
     public void setKeyFile(String keyFile) {
         this.keyFile = keyFile;
+    }
+
+    public String getRemotePluginUrl() {
+        return remotePluginUrl;
+    }
+
+    public void setRemotePluginUrl(String remotePluginUrl) {
+        this.remotePluginUrl = remotePluginUrl;
     }
 }
