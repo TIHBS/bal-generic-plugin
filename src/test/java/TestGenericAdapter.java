@@ -81,7 +81,11 @@ public class TestGenericAdapter {
         adapter.subscribeToEvent(smartContractPath, eventIdentifier, outputs, requiredConfidence, filter)
                 .blockingSubscribe(occurrence -> {
                     if (occurrence != null) {
-                        logger.info("detected occurrence!");
+                        logger.info("detected occurrence! {}", occurrence.getIsoTimestamp());
+                        for (Parameter p : occurrence.getParameters()) {
+                            logger.info("Parameter: Name: [{}] Type: [{}] Value: [{}]", p.getName(), p.getType(), p.getValue());
+
+                        }
                     } else {
                         logger.error("detected occurrence is null!");
                     }

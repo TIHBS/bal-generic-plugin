@@ -120,12 +120,15 @@ public class GenericAdapter implements BlockchainAdapter {
     @Override
     public Observable<Occurrence> subscribeToEvent(String smartContractAddress, String eventIdentifier,
                                                    List<Parameter> outputParameters, double degreeOfConfidence, String filter) throws BalException {
+        String key = smartContractAddress + "::" + eventIdentifier;
+        if (!eventSubscriptionLastSearchTimeMapping.containsKey(key)) {
+            eventSubscriptionLastSearchTimeMapping.put(key, String.valueOf(System.currentTimeMillis()));
+        }
 
         return Observable.interval(0, 10, TimeUnit.SECONDS).map((t) -> {
-            String key = smartContractAddress + "::" + eventIdentifier;
             String end = String.valueOf(System.currentTimeMillis());
 
-            String start = eventSubscriptionLastSearchTimeMapping.getOrDefault(key, end);
+            String start = eventSubscriptionLastSearchTimeMapping.get(key);
 
             Map<String, Object> m = new HashMap<>();
             m.put("eventIdentifier", eventIdentifier);
