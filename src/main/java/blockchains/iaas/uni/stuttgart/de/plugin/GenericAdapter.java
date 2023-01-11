@@ -220,7 +220,8 @@ public class GenericAdapter implements BlockchainAdapter {
     }
 
     @Override
-    public boolean delegatedUnsubscribe(String functionIdentifier,
+    public boolean delegatedUnsubscribe(String smartContractPath,
+                                        String functionIdentifier,
                                         String eventIdentifier,
                                         List<String> typeArguments,
                                         List<Parameter> parameters,
