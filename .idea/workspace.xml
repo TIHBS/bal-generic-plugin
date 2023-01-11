@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="a8b4e315-3565-463b-b4d0-f4e3650c17ab" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/blockchains/iaas/uni/stuttgart/de/plugin/GenericAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/blockchains/iaas/uni/stuttgart/de/plugin/GenericAdapter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/TestGenericAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/TestGenericAdapter.java" afterDir="false" />
     </list>
@@ -45,16 +46,31 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "last_opened_file_path": "/home/ash/Desktop/git/bal/bal-generic-plugin",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "reference.projectsettings.compiler.javacompiler"
+    "settings.editor.selected.configurable": "reference.projectsettings.compiler.javacompiler",
+    "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="JUnit.TestGenericAdapter.testQueryEvents">
+  <component name="RunManager" selected="Maven.bal-generic-plugin [clean,compile...]">
     <configuration name="TestGenericAdapter" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="bal-generic-plugin" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="TestGenericAdapter" />
       <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestGenericAdapter.testExecute" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="bal-generic-plugin" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="TestGenericAdapter" />
+      <option name="METHOD_NAME" value="testExecute" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -72,7 +88,22 @@
     <configuration name="bal-generic-plugin [clean,compile...]" type="MavenRunConfiguration" factoryName="Maven" nameIsGenerated="true">
       <MavenSettings>
         <option name="myGeneralSettings" />
-        <option name="myRunnerSettings" />
+        <option name="myRunnerSettings">
+          <MavenRunnerSettings>
+            <option name="delegateBuildToMaven" value="false" />
+            <option name="environmentProperties">
+              <map />
+            </option>
+            <option name="jreName" value="#USE_PROJECT_JDK" />
+            <option name="mavenProperties">
+              <map />
+            </option>
+            <option name="passParentEnv" value="true" />
+            <option name="runMavenInBackground" value="true" />
+            <option name="skipTests" value="true" />
+            <option name="vmOptions" value="" />
+          </MavenRunnerSettings>
+        </option>
         <option name="myRunnerParameters">
           <MavenRunnerParameters>
             <option name="profiles">
@@ -97,12 +128,14 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="JUnit.TestGenericAdapter.testExecute" />
       <item itemvalue="JUnit.TestGenericAdapter" />
       <item itemvalue="JUnit.TestGenericAdapter.testQueryEvents" />
       <item itemvalue="Maven.bal-generic-plugin [clean,compile...]" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.TestGenericAdapter.testExecute" />
         <item itemvalue="JUnit.TestGenericAdapter.testQueryEvents" />
         <item itemvalue="JUnit.TestGenericAdapter" />
       </list>
@@ -116,7 +149,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1672353856818</updated>
-      <workItem from="1672353857962" duration="6067000" />
+      <workItem from="1672353857962" duration="7274000" />
+      <workItem from="1673458084477" duration="2398000" />
     </task>
     <servers />
   </component>
@@ -144,18 +178,8 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/blockchains/iaas/uni/stuttgart/de/plugin/GenericAdapter.java</url>
-          <line>149</line>
+          <line>151</line>
           <option name="timeStamp" value="11" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/TestGenericAdapter.java</url>
-          <line>61</line>
-          <option name="timeStamp" value="12" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/blockchains/iaas/uni/stuttgart/de/plugin/GenericAdapter.java</url>
-          <line>144</line>
-          <option name="timeStamp" value="13" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

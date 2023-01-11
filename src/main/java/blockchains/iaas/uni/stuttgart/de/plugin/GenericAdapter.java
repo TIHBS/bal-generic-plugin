@@ -71,7 +71,9 @@ public class GenericAdapter implements BlockchainAdapter {
                                                               List<Parameter> inputs,
                                                               List<Parameter> outputs,
                                                               double requiredConfidence,
-                                                              long timeout,
+                                                              long timeoutMillis,
+                                                              String signature,
+                                                              String signer,
                                                               List<String> signers,
                                                               long minimumNumberOfSignatures) throws BalException {
         return CompletableFuture.supplyAsync(() -> {
@@ -84,7 +86,7 @@ public class GenericAdapter implements BlockchainAdapter {
                 m.put("typeArguments", typeArguments);
                 m.put("outputs", outputs);
                 m.put("requiredConfidence", requiredConfidence);
-                m.put("timeout", timeout);
+                m.put("timeout", timeoutMillis);
                 m.put("signers", signers);
                 m.put("minimumNumberOfSignatures", minimumNumberOfSignatures);
 
@@ -123,7 +125,7 @@ public class GenericAdapter implements BlockchainAdapter {
     }
 
     @Override
-    public CompletableFuture<QueryResult> queryEvents(String smartContractAddress, String eventIdentifier,
+    public CompletableFuture<QueryResult> queryEvents(String smartContractAddress, String eventIdentifier, List<String> typeArguments,
                                                       List<Parameter> outputParameters, String filter, TimeFrame timeFrame) throws BalException {
 
 
@@ -162,24 +164,22 @@ public class GenericAdapter implements BlockchainAdapter {
     }
 
     @Override
-    public boolean signInvocation(String s, String s1) {
+    public CompletableFuture<Transaction> tryReplaceInvocation(String correlationId, String smartContractPath,
+                                                               String functionIdentifier,
+                                                               List<String> typeArguments,
+                                                               List<Parameter> inputs,
+                                                               List<Parameter> outputs,
+                                                               double requiredConfidence,
+                                                               String signature,
+                                                               String signer,
+                                                               List<String> signers,
+                                                               long minimumNumberOfSignatures) {
+        return null;
+    }
 
+    @Override
+    public boolean tryCancelInvocation(String s) {
         return false;
-    }
-
-    @Override
-    public List<Transaction> getPendingInvocations() {
-        return null;
-    }
-
-    @Override
-    public CompletableFuture<Transaction> tryReplaceInvocation(String s, String s1, String s2, List<String> list, List<Parameter> list1, List<Parameter> list2, double v, List<String> list3, long l) {
-        return null;
-    }
-
-    @Override
-    public void tryCancelInvocation(String s) {
-
     }
 
     private static BalException mapException(Throwable e) {
@@ -201,5 +201,30 @@ public class GenericAdapter implements BlockchainAdapter {
         }
 
         return result;
+    }
+
+    @Override
+    public boolean canHandleDelegatedSubscription() {
+        return true;
+    }
+
+    @Override
+    public boolean delegatedSubscribe(String functionIdentifier,
+                                      String eventIdentifier,
+                                      List<Parameter> outputParameters,
+                                      double degreeOfConfidence,
+                                      String filter,
+                                      String callbackUrl,
+                                      String correlationId) {
+        return false;
+    }
+
+    @Override
+    public boolean delegatedUnsubscribe(String functionIdentifier,
+                                        String eventIdentifier,
+                                        List<String> typeArguments,
+                                        List<Parameter> parameters,
+                                        String correlationId) {
+        return false;
     }
 }

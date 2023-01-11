@@ -35,8 +35,10 @@ public class TestGenericAdapter {
         long timeout = 10000000;
         List<String> signers = new ArrayList<>();
         long minimumNumberOfSignatures = 0;
+        String signature = "";
+        String signer = "";
         Transaction result = adapter.invokeSmartContract(smartContractPath, functionIdentifier, typeArguments,
-                inputs, outputs, requiredConfidence, timeout, signers, minimumNumberOfSignatures).get();
+                inputs, outputs, requiredConfidence, timeout, signature, signer, signers, minimumNumberOfSignatures).get();
 
         assert result.getState() == TransactionState.CONFIRMED;
         assert result != null;
@@ -55,7 +57,8 @@ public class TestGenericAdapter {
         long timeout = 10000000;
         List<String> signers = new ArrayList<>();
         long minimumNumberOfSignatures = 0;
-        QueryResult result = adapter.queryEvents(smartContractPath, eventIdentifier, outputs,
+        List<String> typeArguments = new ArrayList<>();
+        QueryResult result = adapter.queryEvents(smartContractPath, eventIdentifier, typeArguments, outputs,
                 filter, timeFrame).get();
 
         assert result != null;
