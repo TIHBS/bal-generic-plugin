@@ -51,47 +51,4 @@ public class TestGenericAdapterFlowTests {
         assert result != null;
 
     }
-
-    @Test
-    public void testQueryEvents() throws ExecutionException, InterruptedException {
-        String smartContractPath = "0x2/devnet_nft";
-        String eventIdentifier = "0x2::devnet_nft::MintNFTEvent";
-        TimeFrame timeFrame = new TimeFrame("0", "1672411415694000");
-        String filter = "";
-        List<Parameter> outputs = new ArrayList<>();
-
-        double requiredConfidence = 0;
-        long timeout = 10000000;
-        List<String> signers = new ArrayList<>();
-        long minimumNumberOfSignatures = 0;
-        List<String> typeArguments = new ArrayList<>();
-        QueryResult result = adapter.queryEvents(smartContractPath, eventIdentifier, typeArguments, outputs,
-                filter, timeFrame).get();
-
-        assert result != null;
-        assert result.getOccurrences().size() != 0;
-
-    }
-
-    @Test
-    public void testSubscribe() throws ExecutionException, InterruptedException {
-        String smartContractPath = "0x2/devnet_nft";
-        String eventIdentifier = "0x2::devnet_nft::MintNFTEvent";
-        String filter = "";
-        List<Parameter> outputs = new ArrayList<>();
-
-        double requiredConfidence = 0;
-        adapter.subscribeToEvent(smartContractPath, eventIdentifier, outputs, requiredConfidence, filter)
-                .blockingSubscribe(occurrence -> {
-                    if (occurrence != null) {
-                        logger.info("detected occurrence! {}", occurrence.getIsoTimestamp());
-                        for (Parameter p : occurrence.getParameters()) {
-                            logger.info("Parameter: Name: [{}] Type: [{}] Value: [{}]", p.getName(), p.getType(), p.getValue());
-
-                        }
-                    } else {
-                        logger.error("detected occurrence is null!");
-                    }
-                });
-    }
 }

@@ -5,13 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a8b4e315-3565-463b-b4d0-f4e3650c17ab" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/java/TestGenericAdapterFlowTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/blockchains/iaas/uni/stuttgart/de/plugin/GenericAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/blockchains/iaas/uni/stuttgart/de/plugin/GenericAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/blockchains/iaas/uni/stuttgart/de/plugin/GenericConnectionProfile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/blockchains/iaas/uni/stuttgart/de/plugin/GenericConnectionProfile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/blockchains/iaas/uni/stuttgart/de/plugin/GenericPlugin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/blockchains/iaas/uni/stuttgart/de/plugin/GenericPlugin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/TestGenericAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/TestGenericAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/TestGenericAdapterFlowTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/TestGenericAdapterFlowTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -187,7 +182,7 @@
       <workItem from="1672353857962" duration="7274000" />
       <workItem from="1673458084477" duration="12805000" />
       <workItem from="1674575074699" duration="7222000" />
-      <workItem from="1675006175334" duration="6391000" />
+      <workItem from="1675006175334" duration="6484000" />
     </task>
     <servers />
   </component>
@@ -217,11 +212,6 @@
           <url>file://$PROJECT_DIR$/src/main/java/blockchains/iaas/uni/stuttgart/de/plugin/Utils.java</url>
           <line>71</line>
           <option name="timeStamp" value="33" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/TestGenericAdapterFlowTests.java</url>
-          <line>50</line>
-          <option name="timeStamp" value="34" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
