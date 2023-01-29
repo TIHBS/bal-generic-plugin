@@ -9,6 +9,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 import io.reactivex.Observable;
+import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -27,6 +28,9 @@ public class GenericAdapter implements BlockchainAdapter {
 
     private static final Logger logger = LoggerFactory.getLogger(GenericAdapter.class.getName());
     private static String serverUrl = null;
+    private static boolean canHandleDelegatedSubscription = false;
+
+    private static long scanInterval = 10;
 
 //    public GenericAdapter(String keyFile) {
 //        if (keyFile != null) {
@@ -41,9 +45,11 @@ public class GenericAdapter implements BlockchainAdapter {
 //
 //    }
 
-    public GenericAdapter(String remotePluginUrl) {
+    public GenericAdapter(String remotePluginUrl, boolean canHandleDelegatedSubscription, long scanInterval) {
 
         serverUrl = remotePluginUrl;
+        this.canHandleDelegatedSubscription = canHandleDelegatedSubscription;
+        this.scanInterval = scanInterval;
     }
 
 
@@ -78,6 +84,7 @@ public class GenericAdapter implements BlockchainAdapter {
                                                               String signature,
                                                               String signer,
                                                               List<String> signers,
+                                                              List<ImmutablePair<String, String>> signatures,
                                                               long minimumNumberOfSignatures) throws BalException {
         return CompletableFuture.supplyAsync(() -> {
             try {
@@ -91,10 +98,11 @@ public class GenericAdapter implements BlockchainAdapter {
                 m.put("requiredConfidence", requiredConfidence);
                 m.put("timeout", timeoutMillis);
                 m.put("signers", signers);
+                m.put("signatures", signatures);
                 m.put("minimumNumberOfSignatures", minimumNumberOfSignatures);
 
                 String json = new ObjectMapper().writeValueAsString(m);
-                String api = this.serverUrl + "/execute";
+                String api = this.serverUrl + "/invoke";
                 String result = Utils.sendPostRequest(api, json);
 
                 ObjectMapper mapper = new ObjectMapper();
@@ -128,13 +136,14 @@ public class GenericAdapter implements BlockchainAdapter {
             eventSubscriptionLastSearchTimeMapping.put(key, String.valueOf(System.currentTimeMillis()));
         }
 
-        return Observable.interval(0, 10, TimeUnit.SECONDS).map((t) -> {
+        return Observable.interval(0, scanInterval, TimeUnit.SECONDS).map((t) -> {
             String end = String.valueOf(System.currentTimeMillis());
 
             String start = eventSubscriptionLastSearchTimeMapping.get(key);
 
             Map<String, Object> m = new HashMap<>();
             m.put("eventIdentifier", eventIdentifier);
+
             m.put("filter", filter);
 
             Map<String, String> timeFrame = new HashMap<>();
@@ -146,7 +155,7 @@ public class GenericAdapter implements BlockchainAdapter {
             String json = new ObjectMapper().writeValueAsString(m);
 
 
-            String api = this.serverUrl + "/query";
+            String api = serverUrl + "/query";
             String result = Utils.sendPostRequest(api, json);
 
             ObjectMapper mapper = new ObjectMapper();
@@ -175,7 +184,7 @@ public class GenericAdapter implements BlockchainAdapter {
 
             m.put("outputParameters", outputParameters);
             m.put("filter", filter);
-            m.put("timeFrame", timeFrame);
+            m.put("timeframe", timeFrame);
 
             json = new ObjectMapper().writeValueAsString(m);
 
@@ -243,7 +252,7 @@ public class GenericAdapter implements BlockchainAdapter {
 
     @Override
     public boolean canHandleDelegatedSubscription() {
-        return true;
+        return canHandleDelegatedSubscription;
     }
 
     @Override
