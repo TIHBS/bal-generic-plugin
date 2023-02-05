@@ -6,6 +6,7 @@ import blockchains.iaas.uni.stuttgart.de.api.model.*;
 import blockchains.iaas.uni.stuttgart.de.api.utils.SmartContractPathParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 import io.reactivex.Observable;
@@ -13,6 +14,7 @@ import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.naming.InsufficientResourcesException;
 import javax.naming.OperationNotSupportedException;
 import java.io.File;
 import java.io.IOException;
@@ -111,22 +113,40 @@ public class GenericAdapter implements BlockchainAdapter {
                 logger.info("Transaction hash: " + map.get("transactionHash"));
                 return CompletableFuture.completedFuture(map.get("transactionHash"));
             } catch (Exception e) {
-                throw new CompletionException(wrapExceptions(e));
+                throw mapPluginException(e);
             }
         }).thenApply((txhash) -> {
             Transaction tx = new Transaction();
             tx.setState(TransactionState.CONFIRMED);
             tx.setReturnValues(new ArrayList<>());
             return tx;
-        }).exceptionally(e -> {
-            logger.info("Invocation failed with exception : " + e.getMessage());
-            throw wrapExceptions(e);
         });
+//        .exceptionally(e -> {
+//            logger.info("Invocation failed with exception : " + e.getMessage());
+//            throw new CompletionException(e);
+//        })
     }
 
     private static CompletionException wrapExceptions(Throwable e) {
-        return new CompletionException(mapException(e));
+        return new CompletionException(mapPluginException(e));
     }
+
+    private static BalException mapPluginException(Throwable e) {
+        BalException result;
+
+        if (e instanceof BalException)
+            result = (BalException) e;
+        else if (e.getCause() instanceof IOException)
+            result = new BlockchainNodeUnreachableException(e.getMessage());
+        else if (e.getCause() instanceof RuntimeException)
+            result = new InvalidTransactionException(e.getMessage());
+        else {
+            logger.error("Unexpected exception was thrown!");
+            result = new InvalidTransactionException(e.getMessage());
+        }
+        return result;
+    }
+
 
     @Override
     public Observable<Occurrence> subscribeToEvent(String smartContractAddress, String eventIdentifier,
@@ -229,26 +249,6 @@ public class GenericAdapter implements BlockchainAdapter {
         return false;
     }
 
-    private static BalException mapException(Throwable e) {
-        BalException result;
-
-        if (e instanceof BalException)
-            result = (BalException) e;
-        else if (e.getCause() instanceof BalException)
-            result = (BalException) e.getCause();
-        else if (e.getCause() instanceof IOException)
-            result = new BlockchainNodeUnreachableException(e.getMessage());
-        else if (e instanceof IllegalArgumentException || e instanceof OperationNotSupportedException)
-            result = new InvokeSmartContractFunctionFailure(e.getMessage());
-        else if (e.getCause() instanceof RuntimeException)
-            result = new InvalidTransactionException(e.getMessage());
-        else {
-            logger.error("Unexpected exception was thrown!");
-            result = new InvalidTransactionException(e.getMessage());
-        }
-
-        return result;
-    }
 
     @Override
     public boolean canHandleDelegatedSubscription() {

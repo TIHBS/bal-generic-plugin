@@ -6,6 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="a8b4e315-3565-463b-b4d0-f4e3650c17ab" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/blockchains/iaas/uni/stuttgart/de/plugin/GenericAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/blockchains/iaas/uni/stuttgart/de/plugin/GenericAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/blockchains/iaas/uni/stuttgart/de/plugin/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/blockchains/iaas/uni/stuttgart/de/plugin/Utils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/TestGenericAdapterFlowTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/TestGenericAdapterFlowTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -61,16 +64,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.TestGenericAdapterFlowTests.testExecute">
-    <configuration name="TestGenericAdapter" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="bal-generic-plugin" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="TestGenericAdapter" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.TestGenericAdapterFlowTests.testExecuteError2">
     <configuration name="TestGenericAdapterFlowTests.testExecute" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="bal-generic-plugin" />
       <option name="PACKAGE_NAME" value="" />
@@ -81,21 +75,31 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestGenericAdapter.testExecute" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TestGenericAdapterFlowTests.testExecuteError" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="bal-generic-plugin" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="TestGenericAdapter" />
-      <option name="METHOD_NAME" value="testExecute" />
+      <option name="MAIN_CLASS_NAME" value="TestGenericAdapterFlowTests" />
+      <option name="METHOD_NAME" value="testExecuteError" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestGenericAdapter.testQueryEvents" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TestGenericAdapterFlowTests.testExecuteError2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="bal-generic-plugin" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="TestGenericAdapterFlowTests" />
+      <option name="METHOD_NAME" value="testExecuteError2" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestGenericAdapter.testExecute" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="bal-generic-plugin" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="TestGenericAdapter" />
-      <option name="METHOD_NAME" value="testQueryEvents" />
+      <option name="METHOD_NAME" value="testExecute" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -154,20 +158,20 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="JUnit.TestGenericAdapterFlowTests.testExecuteError2" />
       <item itemvalue="JUnit.TestGenericAdapterFlowTests.testExecute" />
+      <item itemvalue="JUnit.TestGenericAdapterFlowTests.testExecuteError" />
       <item itemvalue="JUnit.TestGenericAdapter.testSubscribe" />
       <item itemvalue="JUnit.TestGenericAdapter.testExecute" />
-      <item itemvalue="JUnit.TestGenericAdapter" />
-      <item itemvalue="JUnit.TestGenericAdapter.testQueryEvents" />
       <item itemvalue="Maven.bal-generic-plugin [clean,compile...]" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.TestGenericAdapterFlowTests.testExecuteError2" />
+        <item itemvalue="JUnit.TestGenericAdapterFlowTests.testExecuteError" />
         <item itemvalue="JUnit.TestGenericAdapterFlowTests.testExecute" />
         <item itemvalue="JUnit.TestGenericAdapter.testExecute" />
         <item itemvalue="JUnit.TestGenericAdapter.testSubscribe" />
-        <item itemvalue="JUnit.TestGenericAdapter.testQueryEvents" />
-        <item itemvalue="JUnit.TestGenericAdapter" />
       </list>
     </recent_temporary>
   </component>
@@ -182,7 +186,9 @@
       <workItem from="1672353857962" duration="7274000" />
       <workItem from="1673458084477" duration="12805000" />
       <workItem from="1674575074699" duration="7222000" />
-      <workItem from="1675006175334" duration="6484000" />
+      <workItem from="1675006175334" duration="7725000" />
+      <workItem from="1675102891506" duration="652000" />
+      <workItem from="1675631994712" duration="7765000" />
     </task>
     <servers />
   </component>
@@ -210,10 +216,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/blockchains/iaas/uni/stuttgart/de/plugin/Utils.java</url>
-          <line>71</line>
-          <option name="timeStamp" value="33" />
+          <line>80</line>
+          <option name="timeStamp" value="65" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/bal_generic_plugin$TestGenericAdapterFlowTests_testExecuteError.ic" NAME="TestGenericAdapterFlowTests.testExecuteError Coverage Results" MODIFIED="1675640811081" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
